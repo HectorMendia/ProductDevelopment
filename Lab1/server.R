@@ -12,7 +12,7 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     contador <- reactiveValues(cont1 = 0, cont2 = 0)
-    #contador2 <- reactiveValues(cont2 = 0)
+    
     output$input1 <- renderText(paste0(c('Output slider input: ', input$input1), collapse = ''))
     output$input2 <- renderText(input$input2)
     output$input3 <- renderText(input$input3)
