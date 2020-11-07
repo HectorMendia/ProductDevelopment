@@ -1,39 +1,21 @@
-library(shiny)
 
+library(shiny)
+library(DT)
 
 shinyUI(fluidPage(
 
-    
-    titlePanel("Old Faithful Geyser Data"),
+    # Application title
+    titlePanel("Tarea Shiny Plots"),
 
-    tabsetPanel(tabPanel("plot",
-                         h1("Graficas en shiny"),
-                         plotOutput("grafica_base_r"),
-                         plotOutput("grafica_ggplot")
-                         ),
-                tabPanel("plot click",
-                         plotOutput("click_base_plot",click="plot_click"),
-                         verbatimTextOutput("click_base_plot_xy"),
-                         plotOutput("click_ggplot",click="ggplot_click"),
-                         verbatimTextOutput("ggplot_click_xy")
-                         ),
-                tabPanel("Todas las opciones",
-                         plotOutput("plot_click_option",
-                                    click = 'clk',
-                                    dblclick = 'dblclick',
-                                    hover = 'hover',
-                                    brush = 'brush'   ),
-                         verbatimTextOutput("all_click_options")
-                         ),
-                tabPanel('Tarea',
-                         plotOutput('plot_tarea',
-                                    click = 'click_plot_tarea',
-                                    dblclick = 'dblclck_plot_tarea',
-                                    hover = 'hover_plot_tarea',
-                                    brush = 'brush_plot_tarea'
-                                    ),
-                         DT::dataTableOutput('tarea_dt')
-                         )
-                )
-    
+    tabsetPanel(
+
+        tabPanel("Tarea",
+                 plotOutput("plot_click_options",
+                            click = "clk",
+                            dblclick = "dclk",
+                            hover = "mhover",
+                            brush = "mbrush"),
+                 DT::dataTableOutput("salida_table")
+        )
+    )
 ))
