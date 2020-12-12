@@ -10,6 +10,10 @@ A continuación archivos de referencia a la aplicación:
 * [server.r](https://github.com/HectorMendia/ProductDevelopment/blob/master/ProyectoFinal/server/server.R)
 * [ui.r](https://github.com/HectorMendia/ProductDevelopment/blob/master/ProyectoFinal/server/ui.R)
 
+Docker Compose
+
+* [docker-compose](https://github.com/HectorMendia/ProductDevelopment/blob/master/ProyectoFinal/docker-compose.yml)
+
 #### **Estructura** 
 
 * airflow: Archivos de configuración  para Airflow: dockerfile, airflow.cfg, entrypoint.sh requirements.txt.  
