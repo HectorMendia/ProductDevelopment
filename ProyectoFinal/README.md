@@ -10,7 +10,139 @@ A continuación archivos de referencia a la aplicación:
 * [server.r](https://github.com/HectorMendia/ProductDevelopment/blob/master/ProyectoFinal/server/server.R)
 * [ui.r](https://github.com/HectorMendia/ProductDevelopment/blob/master/ProyectoFinal/server/ui.R)
 
+#### **Estructura** 
+
+**airflow**
+
+Archivos de configuración  para Airflow: dockerfile, airflow.cfg, entrypoint.sh requirements.txt.  
+
+**dags**
+
+DAGs creados para la carga de los archivos, existe un DAG para cada archivo que se carga a la base de datos
+
+**dashboard**
+
+Contiene el archivo Dockerfile para el ShinyServer, este esta basado en ‘rocker/shiny’ y se instalan librerías adicionales para la ejecución del tablero
+
+**database**
+
+Contiene los archivos para la base de datos 
+
+* estructura.sql: archivo con las creaciones de las tablas para almacenar la información proveniente los los csv 
+* db_airflow.sql: configuración de la base de datos que utiliza Airflow
+
+**datainput**
+
+Almacenamiento de los archivos de carga utilizados como referencia
+
+**logs**
+
+Archivos de registro de la ejecución del tablero de shiny
+
+**monitor**
+
+Carpeta que se utiliza para la carga de archivos de entrada, esta carpeta es la que esta configurada como lectura para Airflow
+
+**server**
+
+Contiene los archivos para el tablero de shiny (server.r, ui.r) 
+
+
+
+
 #### **Desarrollo** 
+
+
+**1. Docker**
+
+Se realizo la configuración del archivo Docker-compose.yml que inicia todos los servidores y sus configuraciones asociadas.
+
+* repositorio
+
+Base de datos de PostgreSQL como repositorio de los datos cargados, recibe la información de airflow y la muestra de lectura en el tablero.
+
+* postgres
+
+Base de datos PostgreSQL para uso de Airflow
+
+* webserver
+
+Configuración de Airflow con una compilación personlizada
+
+* dashboard
+
+Servidor con Shiny para el despliegue del tablero.
+
+
+
+```yaml
+version: '3.8'
+services:
+    repositorio:
+        image: postgres:latest
+        environment:
+            - POSTGRES_USER=final
+            - POSTGRES_PASSWORD=final
+            - POSTGRES_DB=final
+        restart: always
+        ports:
+            - 5432:5432
+        volumes:
+            - ./database/estructura.sql:/docker-entrypoint-initdb.d/db.sql
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+    postgres:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+        volumes:
+            - ./database/db_airflow.sql:/docker-entrypoint-initdb.d/init.sql
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+
+    webserver:
+        build: ./airflow
+        restart: always
+        depends_on:
+            - postgres
+        environment:
+            - LOAD_EX=n
+            - EXECUTOR=Local
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./monitor:/home/airflow/monitor
+            - ./airflow/airflow.cfg:/usr/local/airflow/airflow.cfg
+        ports:
+            - "8080:8080"
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
+
+    dashboard:
+      build: ./dashboard
+      depends_on:
+          - postgres
+      ports:
+        - 3838:3838
+      volumes:
+      - ./server:/srv/shiny-server
+      - ./logs:/var/log/shiny-server
+
+```
+
 
 **1. Archivos proveidos**
 
