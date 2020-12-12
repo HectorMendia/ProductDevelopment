@@ -60,7 +60,6 @@ services:
 
     dashboard:
       #image: rocker/shiny:latest
-      # para cambiar la imagen localmente
       build: ./dashboard
       depends_on:
           - postgres
@@ -69,4 +68,14 @@ services:
       volumes:
       - ./server:/srv/shiny-server
       - ./logs:/var/log/shiny-server
+    # Utilizado para pruebas de conexion y visualizacion
+    # dev:
+    #   image: rocker/rstudio
+    #   depends_on:
+    #       - postgres
+    #   volumes:
+    #     - ./server:/home/rstudio
+    #   ports:
+    #     - 8787:8787
+
 

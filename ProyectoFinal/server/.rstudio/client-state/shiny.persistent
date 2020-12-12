@@ -1,0 +1,7 @@
+{
+    "new-shiny-application": {
+        "name": "test",
+        "type": "type_multi_file",
+        "dir": "~/ttt"
+    }
+}

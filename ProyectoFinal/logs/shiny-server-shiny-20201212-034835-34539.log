@@ -1,0 +1,116 @@
+su: ignoring --preserve-environment, it's mutually exclusive with --login
+
+Listening on http://127.0.0.1:34539
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: shinydashboard
+
+Attaching package: ‘shinydashboard’
+
+The following object is masked from ‘package:graphics’:
+
+    box
+
+
+Attaching package: ‘DT’
+
+The following objects are masked from ‘package:shiny’:
+
+    dataTableOutput, renderDataTable
+
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+Warning in min.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to min; returning Inf
+Warning in max.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to max; returning -Inf
+Warning: Error in seq.int: 'to' must be a finite number
+  104: seq.POSIXt
+  102: seqDtime
+  101: calcSteps
+  100: pretty.Date
+   98: findStepSize
+   97: sliderInput
+   96: renderUI [/srv/shiny-server/server.R#37]
+   95: func
+   82: origRenderFunc
+   81: output$output_range_date
+    1: runApp
+Warning in min.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to min; returning Inf
+Warning in max.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to max; returning -Inf
+Warning: Error in seq.int: 'to' must be a finite number
+  104: seq.POSIXt
+  102: seqDtime
+  101: calcSteps
+  100: pretty.Date
+   98: findStepSize
+   97: sliderInput
+   96: renderUI [/srv/shiny-server/server.R#37]
+   95: func
+   82: origRenderFunc
+   81: output$output_range_date
+    1: runApp
+Warning in min.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to min; returning Inf
+Warning in max.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to max; returning -Inf
+Warning: Error in seq.int: 'to' must be a finite number
+  104: seq.POSIXt
+  102: seqDtime
+  101: calcSteps
+  100: pretty.Date
+   98: findStepSize
+   97: sliderInput
+   96: renderUI [/srv/shiny-server/server.R#37]
+   95: func
+   82: origRenderFunc
+   81: output$output_range_date
+    1: runApp
+Warning in min.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to min; returning Inf
+Warning in max.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to max; returning -Inf
+Warning: Error in seq.int: 'to' must be a finite number
+  104: seq.POSIXt
+  102: seqDtime
+  101: calcSteps
+  100: pretty.Date
+   98: findStepSize
+   97: sliderInput
+   96: renderUI [/srv/shiny-server/server.R#37]
+   95: func
+   82: origRenderFunc
+   81: output$output_range_date
+    1: runApp
+Warning in min.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to min; returning Inf
+Warning in max.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to max; returning -Inf
+Warning: Error in seq.int: 'to' must be a finite number
+  104: seq.POSIXt
+  102: seqDtime
+  101: calcSteps
+  100: pretty.Date
+   98: findStepSize
+   97: sliderInput
+   96: renderUI [/srv/shiny-server/server.R#41]
+   95: func
+   82: origRenderFunc
+   81: output$output_range_date
+    1: runApp

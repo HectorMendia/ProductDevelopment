@@ -18,7 +18,7 @@ FILE_NAME = "time_series_covid19_confirmed_global.csv"
 def etl_process(**kwargs):
     #logger.info('Inicio: confirmed')
     print(11)
-    #file_path = FSHook(FILE_CONNECTION_ID).get_path()
+    #file_path = FILE_CONNECTION_ID  #FSHook(FILE_CONNECTION_ID)
     file_path = FSHook(conn_id = FILE_CONNECTION_ID).get_path()
     full_path = f'{file_path}/{FILE_NAME}'
     df = pd.read_csv(full_path, encoding = "ISO-8859-1")
@@ -37,35 +37,46 @@ def etl_process(**kwargs):
         fila += 1
         for coldate in total_cols[4:]:
             prov.append(item['Province/State'])
-            country.append(item['Country/Region'])
+            #country.append(item['Country/Region'])
+            if str(item['Province/State']) == 'nan':
+                country.append(item['Country/Region'])
+            else:
+                country.append(item['Country/Region'] + '(' + item['Province/State'] + ')')
+            
             lat.append(item['Lat'])
             lon.append(item['Long'])
             date_time_obj = datetime.strptime(coldate, '%m/%d/%y')
             date.append(date_time_obj)
             val.append(item[coldate])
-    print(fila)
+    #print(fila)
     carga = pd.DataFrame({})
     d = {'provincia':prov, 'country': country, 'lat': lat, 'long': lon, 'dates': date, 'value':val}
     carga = pd.DataFrame(data=d)
     locallog = pd.DataFrame({'tipo':['confirmed'], 'fecha':[datetime.now()]})
 
     #logger.info('Tranformado')
-    print('Transformado')
-
+    resumen = carga.groupby(['dates']).sum()
+    resumen = resumen.reset_index()
+    resumen['provincia'] = ''
+    resumen['country'] = '-Global-'
+    resumen['lat'] = 0
+    resumen['long'] = 0
+    carga = carga.append(resumen)
+    #print('Transformado')
+    #connection_string = 'postgresql://final:final@repositorio:5432/final'
     psql_connection = PostgresHook('pgsql').get_sqlalchemy_engine()
     with psql_connection.begin() as connection:
         connection.execute("truncate confirmed")
         carga.to_sql('confirmed', con=connection, if_exists='append', index=False)
         locallog.to_sql('log_carga', con=connection, if_exists='append', index=False)
 
-    #logger.info('Cargado')
     #logger.info(f"Rows inserted {len(df.index)}")
 
 
 
 dag = DAG('confirmed', description='Load COVID confirmed cases',
           default_args={
-              'owner': 'hector.mendia',
+              'owner': 'grupo.dos',
               'depends_on_past': False,
               'max_active_runs': 1,
               'start_date': days_ago(1)

@@ -37,7 +37,12 @@ def etl_process(**kwargs):
         fila += 1
         for coldate in total_cols[4:]:
             prov.append(item['Province/State'])
-            country.append(item['Country/Region'])
+            # country.append(item['Country/Region'])
+            if str(item['Province/State']) == 'nan':
+                country.append(item['Country/Region'])
+            else:
+                country.append(item['Country/Region'] + '(' + item['Province/State'] + ')')
+
             lat.append(item['Lat'])
             lon.append(item['Long'])
             date_time_obj = datetime.strptime(coldate, '%m/%d/%y')
@@ -50,6 +55,13 @@ def etl_process(**kwargs):
     locallog = pd.DataFrame({'tipo':['deaths'], 'fecha':[datetime.now()]})
 
     #logger.info('Tranformado')
+    resumen = carga.groupby(['dates']).sum()
+    resumen = resumen.reset_index()
+    resumen['provincia'] = ''
+    resumen['country'] = '-Global-'
+    resumen['lat'] = 0
+    resumen['long'] = 0
+    carga = carga.append(resumen)
     print('Transformado')
 
     psql_connection = PostgresHook('pgsql').get_sqlalchemy_engine()
@@ -65,7 +77,7 @@ def etl_process(**kwargs):
 
 dag = DAG('deaths', description='Load COVID deaths cases',
           default_args={
-              'owner': 'hector.mendia',
+              'owner': 'grupo.dos',
               'depends_on_past': False,
               'max_active_runs': 1,
               'start_date': days_ago(1)
