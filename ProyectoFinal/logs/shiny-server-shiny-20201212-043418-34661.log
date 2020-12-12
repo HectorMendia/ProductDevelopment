@@ -64,3 +64,4 @@ Warning in validateCoords(lng, lat, funcName) :
   Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
 Warning in validateCoords(lng, lat, funcName) :
   Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+
