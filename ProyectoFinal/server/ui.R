@@ -10,7 +10,6 @@ library(lubridate)
 library(htmltools)
 library(DBI)
 
-
 header <- dashboardHeader(title = "COVID-19")
 
 sidebar <- dashboardSidebar(sidebarMenu(
@@ -31,11 +30,28 @@ frow1 <- fluidRow(
     valueBoxOutput("output_recovered"),
     
     box(
+        title = "Mapa de confirmados",
+        status = "primary",
+        solidHeader = TRUE,
+        collapsible = FALSE,
+        width = 12,
+        leafletOutput(outputId = "covid_confirmed_map")
+    ),
+    
+    box(
         title = "Mapa de muertes",
         status = "primary",
         solidHeader = TRUE,
         collapsible = FALSE,
-        leafletOutput(outputId = "covid_map")
+        leafletOutput(outputId = "covid_death_map")
+    ),
+    
+    box(
+        title = "Mapa de recuperados",
+        status = "primary",
+        solidHeader = TRUE,
+        collapsible = FALSE,
+        leafletOutput(outputId = "covid_recovered_map")
     ),
     box(
         title = "Tendencia de casos confirmados",

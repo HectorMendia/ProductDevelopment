@@ -114,3 +114,10 @@ Warning: Error in seq.int: 'to' must be a finite number
    82: origRenderFunc
    81: output$output_range_date
     1: runApp
+geom_path: Each group consists of only one observation. Do you need to adjust
+the group aesthetic?
+geom_path: Each group consists of only one observation. Do you need to adjust
+the group aesthetic?
+geom_path: Each group consists of only one observation. Do you need to adjust
+the group aesthetic?
+

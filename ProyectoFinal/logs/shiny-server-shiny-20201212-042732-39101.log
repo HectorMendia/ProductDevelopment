@@ -1,0 +1,55 @@
+su: ignoring --preserve-environment, it's mutually exclusive with --login
+
+Listening on http://127.0.0.1:39101
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: shinydashboard
+
+Attaching package: ‘shinydashboard’
+
+The following object is masked from ‘package:graphics’:
+
+    box
+
+
+Attaching package: ‘DT’
+
+The following objects are masked from ‘package:shiny’:
+
+    dataTableOutput, renderDataTable
+
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+Warning in validateCoords(lng, lat, funcName) :
+  Data contains 1 rows with either missing or invalid lat/lon values and will be ignored
+

@@ -59,8 +59,8 @@ def etl_process(**kwargs):
     resumen = resumen.reset_index()
     resumen['provincia'] = ''
     resumen['country'] = '-Global-'
-    resumen['lat'] = 0
-    resumen['long'] = 0
+    resumen['lat'] = None
+    resumen['long'] = None
     carga = carga.append(resumen)
     #print('Transformado')
     #connection_string = 'postgresql://final:final@repositorio:5432/final'
