@@ -12,40 +12,17 @@ A continuación archivos de referencia a la aplicación:
 
 #### **Estructura** 
 
-**airflow**
+* airflow: Archivos de configuración  para Airflow: dockerfile, airflow.cfg, entrypoint.sh requirements.txt.  
+* dags: DAGs creados para la carga de los archivos, existe un DAG para cada archivo que se carga a la base de datos
+* dashboard: Contiene el archivo Dockerfile para el ShinyServer, este esta basado en ‘rocker/shiny’ y se instalan librerías adicionales para la ejecución del tablero
+* database: Contiene los archivos para la base de datos 
+    * estructura.sql: archivo con las creaciones de las tablas para almacenar la información proveniente los los csv 
+    * db_airflow.sql: configuración de la base de datos que utiliza Airflow
 
-Archivos de configuración  para Airflow: dockerfile, airflow.cfg, entrypoint.sh requirements.txt.  
-
-**dags**
-
-DAGs creados para la carga de los archivos, existe un DAG para cada archivo que se carga a la base de datos
-
-**dashboard**
-
-Contiene el archivo Dockerfile para el ShinyServer, este esta basado en ‘rocker/shiny’ y se instalan librerías adicionales para la ejecución del tablero
-
-**database**
-
-Contiene los archivos para la base de datos 
-
-* estructura.sql: archivo con las creaciones de las tablas para almacenar la información proveniente los los csv 
-* db_airflow.sql: configuración de la base de datos que utiliza Airflow
-
-**datainput**
-
-Almacenamiento de los archivos de carga utilizados como referencia
-
-**logs**
-
-Archivos de registro de la ejecución del tablero de shiny
-
-**monitor**
-
-Carpeta que se utiliza para la carga de archivos de entrada, esta carpeta es la que esta configurada como lectura para Airflow
-
-**server**
-
-Contiene los archivos para el tablero de shiny (server.r, ui.r) 
+* datainput: Almacenamiento de los archivos de carga utilizados como referencia
+* logs: Archivos de registro de la ejecución del tablero de shiny
+* monitor: Carpeta que se utiliza para la carga de archivos de entrada, esta carpeta es la que esta configurada como lectura para Airflow
+* server: Contiene los archivos para el tablero de shiny (server.r, ui.r) 
 
 
 
@@ -57,21 +34,10 @@ Contiene los archivos para el tablero de shiny (server.r, ui.r)
 
 Se realizo la configuración del archivo Docker-compose.yml que inicia todos los servidores y sus configuraciones asociadas.
 
-* repositorio
-
-Base de datos de PostgreSQL como repositorio de los datos cargados, recibe la información de airflow y la muestra de lectura en el tablero.
-
-* postgres
-
-Base de datos PostgreSQL para uso de Airflow
-
-* webserver
-
-Configuración de Airflow con una compilación personlizada
-
-* dashboard
-
-Servidor con Shiny para el despliegue del tablero.
+* repositorio: Base de datos de PostgreSQL como repositorio de los datos cargados, recibe la información de airflow y la muestra de lectura en el tablero.
+* postgres : Base de datos PostgreSQL para uso de Airflow
+* webserver: Configuración de Airflow con una compilación personlizada
+* dashboard: Servidor con Shiny para el despliegue del tablero.
 
 
 
